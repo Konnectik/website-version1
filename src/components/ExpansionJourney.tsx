@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Building2, Globe, ArrowRight, Download } from "lucide-react";
+import { MapPin, Building2, Globe, ArrowRight, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { PitchDeckForm } from "@/components/PitchDeckForm";
 
 const phases = [
   {
@@ -62,6 +64,8 @@ const PhaseCard = ({ phase, index }: { phase: typeof phases[0]; index: number })
 };
 
 export const ExpansionJourney = () => {
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
   return (
     <section className="py-24 bg-background relative overflow-hidden">
       {/* Background decoration */}
@@ -109,14 +113,14 @@ export const ExpansionJourney = () => {
             Invest in our Expansion Journey
             <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
           </Button>
-          <Button size="lg" variant="outline" asChild>
-            <a href="/pitch-deck.pdf" target="_blank" rel="noopener noreferrer">
-              <Download className="mr-2 w-5 h-5" />
-              View Pitch Deck
-            </a>
+          <Button size="lg" variant="outline" onClick={() => setIsFormOpen(true)}>
+            <FileText className="mr-2 w-5 h-5" />
+            View Pitch Deck
           </Button>
         </motion.div>
       </div>
+
+      <PitchDeckForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
     </section>
   );
 };
