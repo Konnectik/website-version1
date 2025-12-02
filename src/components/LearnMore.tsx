@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import aboutWhy from '@/assets/img/about-why.jpg';
+import aboutHow from '@/assets/img/about-how.jpg';
+import aboutWhat from '@/assets/img/about-what.jpg';
 
 interface TabContent {
   id: string;
@@ -66,7 +69,7 @@ const TabPanel: React.FC<TabPanelProps> = ({ tab, isActive }) => (
 const AboutContent: React.FC = () => (
   <>
     <p>
-      <strong className="text-foreground">Why now?</strong> Millions in Cameroon still lack reliable, affordable connectivity. This gap limits education, healthcare, and entrepreneurship. Our PoC in Douala proves a model that can scale.
+      <strong className="text-foreground">Millions in Cameroon</strong> still lack <strong className="text-foreground">reliable</strong>, <strong className="text-foreground">affordable connectivity</strong>. This gap limits education, healthcare, and entrepreneurship. Our PoC in Douala proves a model that can scale.
     </p>
     <p>A survey conducted with students in the PK17 residential zone revealed widespread dissatisfaction with existing data plans. Key needs raised were:</p>
     <ul className="list-none space-y-2 pl-0">
@@ -108,22 +111,28 @@ const tabs: TabContent[] = [
   {
     id: 'why',
     label: 'WHY',
-    title: 'About Us',
+    title: 'Why Now?',
     content: <AboutContent />,
   },
   {
     id: 'how',
     label: 'HOW',
-    title: 'How we solve it',
+    title: 'How we solve it?',
     content: <HowContent />,
   },
   {
     id: 'what',
     label: 'WHAT',
-    title: "What we're building",
+    title: "What we're building?",
     content: <WhatContent />,
   },
 ];
+
+const images: Record<string, string> = {
+  why: aboutWhy,
+  how: aboutHow,
+  what: aboutWhat,
+};
 
 export const LearnMore: React.FC = () => {
   const [activeTab, setActiveTab] = useState('why');
@@ -137,6 +146,14 @@ export const LearnMore: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
+          {/* Section Header */}
+          <div className="mb-12 md:mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold font-grotesk text-foreground">
+              About <span className="text-primary">Us</span>
+            </h1>
+            <div className="w-16 h-1 bg-primary mt-4" />
+          </div>
+
           <article className="bg-card border border-border/50 rounded-2xl shadow-xl overflow-hidden">
             <div className="grid md:grid-cols-2 gap-0">
               {/* LEFT: Tabs + content */}
@@ -167,27 +184,35 @@ export const LearnMore: React.FC = () => {
                 </div>
               </div>
 
-              {/* RIGHT: Visual element */}
-              <div className="relative bg-gradient-to-br from-primary/10 via-primary/5 to-transparent hidden md:flex items-center justify-center p-12">
-                <motion.div
-                  key={activeTab}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4 }}
-                  className="relative"
-                >
-                  {/* Abstract visual based on active tab */}
-                  <div className="w-64 h-64 relative">
-                    <div className="absolute inset-0 bg-primary/20 rounded-full blur-3xl" />
-                    <div className="absolute inset-4 bg-card border border-border/50 rounded-2xl shadow-2xl flex items-center justify-center">
-                      <span className="text-6xl font-bold font-grotesk text-primary">
-                        {activeTab === 'why' && '?'}
-                        {activeTab === 'how' && '→'}
-                        {activeTab === 'what' && '◆'}
-                      </span>
-                    </div>
+              {/* RIGHT: Visual element (contained image) */}
+              <div className="relative hidden md:flex items-center justify-center p-4 md:p-8 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent">
+                <div className="w-full flex items-center justify-center">
+                  {/* capped container keeps image contained and sized */}
+                  <div className="max-w-[420px] max-h-[360px] w-full rounded-2xl overflow-hidden border border-border/50 shadow-2xl bg-card">
+                    <AnimatePresence mode="wait">
+                      <motion.img
+                        key={activeTab}
+                        src={images[activeTab] ?? ''}
+                        alt={
+                          activeTab === 'why'
+                            ? 'Community and students - why we exist'
+                            : activeTab === 'how'
+                            ? 'Network deployment and planning'
+                            : 'Platform and founder overview'
+                        }
+                        loading="lazy"
+                        onError={(e) => {
+                          console.warn(`Failed to load image for tab "${activeTab}"`, e);
+                        }}
+                        initial={{ opacity: 0, scale: 0.98, y: 8 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.98, y: -8 }}
+                        transition={{ duration: 0.35 }}
+                        className="w-full h-full object-contain block"
+                      />
+                    </AnimatePresence>
                   </div>
-                </motion.div>
+                </div>
               </div>
             </div>
           </article>
