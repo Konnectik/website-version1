@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MapPin, Building2, Globe, ArrowRight } from "lucide-react";
+import { MapPin, Building2, Globe, ArrowRight, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const phases = [
@@ -103,11 +103,17 @@ export const ExpansionJourney = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Button size="lg" className="group">
             Invest in our Expansion Journey
             <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
+          </Button>
+          <Button size="lg" variant="outline" asChild>
+            <a href="/pitch-deck.pdf" download>
+              <Download className="mr-2 w-5 h-5" />
+              Download Pitch Deck
+            </a>
           </Button>
         </motion.div>
       </div>
