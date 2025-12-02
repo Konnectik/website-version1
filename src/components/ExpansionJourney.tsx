@@ -110,9 +110,9 @@ export const ExpansionJourney = () => {
             <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
           </Button>
           <Button size="lg" variant="outline" asChild>
-            <a href="/pitch-deck.pdf" download>
+            <a href="/pitch-deck.pdf" target="_blank" rel="noopener noreferrer">
               <Download className="mr-2 w-5 h-5" />
-              Download Pitch Deck
+              View Pitch Deck
             </a>
           </Button>
         </motion.div>
