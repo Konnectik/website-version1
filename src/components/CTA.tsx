@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, Play } from "lucide-react";
 import mockup1 from "@/assets/konnectik_mockup2.png";
 import mockup2 from "@/assets/konnectik_mockup3.png";
 
 export const CTA = () => {
   // --- added state and countdown logic ---
   const [showModal, setShowModal] = useState(false);
+  const [showDemoModal, setShowDemoModal] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
     total: 0,
     days: 0,
@@ -117,8 +118,8 @@ export const CTA = () => {
             </p>
 
             {/* Buttons */}
-            {/* Single Download Button (opens modal) */}
-            <div className="flex justify-center mb-12">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
+              {/* Download Button (opens modal) */}
               <Button
                 size="lg"
                 className="text-lg px-10 py-7 gradient-primary shadow-glow hover:shadow-strong transition-smooth group"
@@ -128,6 +129,18 @@ export const CTA = () => {
                 <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
                 Download App
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-smooth" />
+              </Button>
+
+              {/* Demo Button */}
+              <Button
+                size="lg"
+                variant="outline"
+                className="text-lg px-10 py-7 border-2 border-primary text-primary hover:bg-primary/10 transition-smooth group"
+                onClick={() => setShowDemoModal(true)}
+                aria-haspopup="dialog"
+              >
+                <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-smooth" />
+                Demo
               </Button>
             </div>
 
@@ -185,6 +198,42 @@ export const CTA = () => {
                 </div>
               </div>
             )}
+
+            {/* Demo Modal: Figma Prototype */}
+            {showDemoModal && (
+              <div
+                className="fixed inset-0 z-50 flex items-center justify-center p-4"
+                role="dialog"
+                aria-modal="true"
+                aria-label="App demo modal"
+              >
+                <div
+                  className="absolute inset-0 bg-black/70"
+                  onClick={() => setShowDemoModal(false)}
+                />
+                <div className="relative bg-card rounded-xl p-4 max-w-4xl w-full z-10 border border-primary/30">
+                  <div className="flex justify-between items-center mb-4">
+                    <h3 className="text-xl font-bold">App Demo</h3>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={() => setShowDemoModal(false)}
+                      className="text-sm"
+                    >
+                      Close
+                    </Button>
+                  </div>
+                  <div className="aspect-video w-full">
+                    <iframe
+                      className="w-full h-full rounded-lg border border-border"
+                      src="https://embed.figma.com/proto/RU16jcquksyerqVy3xQ8JM/Konnectik-Flutterflow?page-id=0%3A1&node-id=55-123&viewport=-206%2C400%2C0.38&scaling=scale-down&content-scaling=fixed&starting-point-node-id=11%3A7&embed-host=share"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Trust Indicators */}
             <div className="flex flex-wrap justify-center gap-8 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
