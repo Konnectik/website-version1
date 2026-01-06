@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
-import { ArrowRight, Download, Play } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
+import { DemoModal } from "./DemoModal";
 import mockup1 from "@/assets/konnectik_mockup2.png";
 import mockup2 from "@/assets/konnectik_mockup3.png";
 
 export const CTA = () => {
   // --- added state and countdown logic ---
   const [showModal, setShowModal] = useState(false);
-  const [showDemoModal, setShowDemoModal] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
     total: 0,
     days: 0,
@@ -132,16 +132,7 @@ export const CTA = () => {
               </Button>
 
               {/* Demo Button */}
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-lg px-10 py-7 border-2 border-primary text-primary hover:bg-primary/10 transition-smooth group"
-                onClick={() => setShowDemoModal(true)}
-                aria-haspopup="dialog"
-              >
-                <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-smooth" />
-                Demo
-              </Button>
+              <DemoModal />
             </div>
 
             {/* Modal: Unavailability + Countdown */}
@@ -194,41 +185,6 @@ export const CTA = () => {
                     >
                       Close
                     </Button>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Demo Modal: Figma Prototype */}
-            {showDemoModal && (
-              <div
-                className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4"
-                role="dialog"
-                aria-modal="true"
-                aria-label="App demo modal"
-              >
-                <div
-                  className="absolute inset-0 bg-black/70"
-                  onClick={() => setShowDemoModal(false)}
-                />
-                <div className="relative bg-card sm:rounded-xl p-3 sm:p-4 w-full h-full sm:h-auto sm:max-w-4xl z-10 sm:border border-primary/30 flex flex-col">
-                  <div className="flex justify-between items-center mb-3 sm:mb-4">
-                    <h3 className="text-lg sm:text-xl font-bold">App Demo</h3>
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      onClick={() => setShowDemoModal(false)}
-                      className="text-sm"
-                    >
-                      Close
-                    </Button>
-                  </div>
-                  <div className="flex-1 sm:aspect-video w-full min-h-0">
-                    <iframe
-                      className="w-full h-full sm:rounded-lg border border-border"
-                      src="https://embed.figma.com/proto/RU16jcquksyerqVy3xQ8JM/Konnectik-Flutterflow?page-id=0%3A1&node-id=55-123&viewport=-206%2C400%2C0.38&scaling=scale-down&content-scaling=fixed&starting-point-node-id=11%3A7&embed-host=share"
-                      allowFullScreen
-                    />
                   </div>
                 </div>
               </div>
