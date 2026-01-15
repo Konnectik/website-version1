@@ -17,7 +17,7 @@ export const CTA = () => {
     seconds: 0,
   });
 
-  const releaseTime = new Date("2026-01-15T00:00:00Z").getTime();
+  const releaseTime = new Date("2026-01-30T00:00:00Z").getTime();
 
   useEffect(() => {
     let timer: number | undefined;

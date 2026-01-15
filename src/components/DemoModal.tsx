@@ -9,7 +9,7 @@ interface DemoModalProps {
 }
 
 export const DemoModal = ({
-  buttonLabel = "Demo",
+  buttonLabel = "Test Prototype",
   buttonClassName = "text-lg px-10 py-7 border-2 border-primary text-primary hover:bg-primary/10 transition-smooth group",
   buttonSize = "lg",
 }: DemoModalProps) => {
