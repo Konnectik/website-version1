@@ -55,9 +55,9 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-background/80 backdrop-blur-md px-6 py-2 rounded-full border border-border/50 shadow-subtle"
+          className="mb-12 flex justify-center"
         >
-          <img src={heroLogo} alt="Konnectik logo" className="h-8 md:h-10 block" />
+          <img src={heroLogo} alt="Konnectik logo" className="h-12 md:h-16" />
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
