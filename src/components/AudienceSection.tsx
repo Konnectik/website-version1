@@ -108,12 +108,19 @@ export const AudienceSection = () => {
                 ))}
               </ul>
 
-              {/* CTAs */}
+              {/* CTAs — Survey is primary for idea validation */}
               <div className="mt-auto flex flex-col gap-3">
+                <SurveyModal
+                  formUrl={card.surveyUrl}
+                  buttonLabel={card.surveyLabel}
+                  buttonClassName="gradient-primary text-primary-foreground shadow-glow hover:shadow-strong transition-smooth group w-full"
+                  buttonSize="lg"
+                />
                 {index === 0 ? (
                   <Button
                     size="lg"
-                    className="gradient-primary text-primary-foreground shadow-glow hover:shadow-strong transition-smooth group w-full"
+                    variant="outline"
+                    className="border-2 border-primary text-primary hover:bg-primary/10 transition-smooth group w-full"
                     asChild
                   >
                     <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
@@ -124,19 +131,14 @@ export const AudienceSection = () => {
                 ) : (
                   <Button
                     size="lg"
-                    className="gradient-primary text-primary-foreground shadow-glow hover:shadow-strong transition-smooth group w-full"
+                    variant="outline"
+                    className="border-2 border-primary text-primary hover:bg-primary/10 transition-smooth group w-full"
                     onClick={() => setShowPlatformModal(true)}
                   >
                     <Smartphone className="w-5 h-5 mr-2 group-hover:scale-110 transition-smooth" />
                     Download App
                   </Button>
                 )}
-                <SurveyModal
-                  formUrl={card.surveyUrl}
-                  buttonLabel={card.surveyLabel}
-                  buttonClassName="text-sm px-4 py-2 border-2 border-primary text-primary hover:bg-primary/10 transition-smooth group w-full"
-                  buttonSize="lg"
-                />
               </div>
             </motion.div>
           ))}
