@@ -55,9 +55,9 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-6"
+          className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-background/80 backdrop-blur-md px-6 py-2 rounded-full border border-border/50 shadow-subtle"
         >
-          <img src={heroLogo} alt="Konnectik logo" className="h-10 md:h-14 lg:h-16 mx-auto block" />
+          <img src={heroLogo} alt="Konnectik logo" className="h-8 md:h-10 block" />
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
@@ -99,7 +99,7 @@ export const Hero = () => {
               </div>
               <div className="flex items-center gap-2 bg-card px-4 py-2 rounded-full border shadow-subtle text-sm">
                 <Satellite className="w-4 h-4 text-primary" />
-                <span className="font-medium">Satellite-Powered</span>
+                <span className="font-medium">Fibre · 5G · Satellite</span>
               </div>
               <div className="flex items-center gap-2 bg-card px-4 py-2 rounded-full border shadow-subtle text-sm">
                 <Wifi className="w-4 h-4 text-primary" />

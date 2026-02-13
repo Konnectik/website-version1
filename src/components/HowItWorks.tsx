@@ -18,7 +18,7 @@ const steps = [
 		icon: Wifi,
 		title: "Connect Anywhere",
 		description:
-			"Access hyperlocal Wi-Fi zones powered by satellite and local network hardware.",
+			"Access hyperlocal Wi-Fi zones powered by fibre optics, 5G/LTE, and satellite infrastructure.",
 	},
 	{
 		icon: TrendingDown,

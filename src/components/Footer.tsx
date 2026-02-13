@@ -13,7 +13,7 @@ export const Footer = () => {
             </div>
             <p className="text-muted-foreground mb-6 max-w-md">
               Delivering affordable, seamless, time-based internet access through smart hyperlocal 
-              zones backed by satellite connectivity.
+              zones powered by fibre, 5G, and satellite connectivity.
             </p>
             <div className="flex gap-4">
               <a 
