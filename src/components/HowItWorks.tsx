@@ -119,7 +119,7 @@ export const HowItWorks = () => {
 									Traditional Mobile Data
 								</div>
 								<div className="text-4xl md:text-5xl font-black text-muted-foreground mb-1">
-									$50
+									15,000-40,000 XAF
 								</div>
 								<div className="text-xs text-muted-foreground">
 									per month
@@ -138,13 +138,13 @@ export const HowItWorks = () => {
 									Konnectik
 								</div>
 								<div className="text-4xl md:text-5xl font-black text-primary mb-1">
-									$5
+									2,500 XAF
 								</div>
 								<div className="text-xs text-muted-foreground">
 									per month
 								</div>
 								<div className="mt-2 text-xs font-semibold text-primary">
-									Unlimited in zones
+									Unlimited data, time limited
 								</div>
 							</div>
 						</div>

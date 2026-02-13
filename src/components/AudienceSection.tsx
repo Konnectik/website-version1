@@ -65,7 +65,7 @@ export const AudienceSection = () => {
             Who is Konnectik for?
           </span>
           <h2 className="text-3xl md:text-5xl font-black mb-4">
-            Two Sides, <span className="text-primary">One Network</span>
+            Two Sides, <span className="text-primary">One Network,</span> An Ecosystem
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Whether you need internet access or want to provide it — Konnectik connects you.
@@ -125,7 +125,7 @@ export const AudienceSection = () => {
                   >
                     <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
                       <MessageCircle className="w-5 h-5 mr-2 group-hover:scale-110 transition-smooth" />
-                      Join WhatsApp Community
+                      Join Waiting List
                     </a>
                   </Button>
                 ) : (
@@ -136,7 +136,7 @@ export const AudienceSection = () => {
                     onClick={() => setShowPlatformModal(true)}
                   >
                     <Smartphone className="w-5 h-5 mr-2 group-hover:scale-110 transition-smooth" />
-                    Download App
+                    Access Platform
                   </Button>
                 )}
               </div>

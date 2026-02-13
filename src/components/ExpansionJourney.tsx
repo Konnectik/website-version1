@@ -47,7 +47,7 @@ const PhaseCard = ({ phase, index }: { phase: typeof phases[0]; index: number })
     >
       {isActive && (
         <span className="absolute -top-3 left-6 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">
-          Projected - Jan. 2026
+          Projected - Q1 2026
         </span>
       )}
       
