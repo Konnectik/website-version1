@@ -24,8 +24,8 @@ const features = [
   },
   {
     icon: Globe,
-    title: "Satellite Backup",
-    description: "Reliable satellite connectivity ensures you're never without internet access.",
+    title: "Multi-Tech Backbone",
+    description: "Fibre optics, 5G, LTE and satellite backup ensure you're never without internet access.",
   },
   {
     icon: Battery,

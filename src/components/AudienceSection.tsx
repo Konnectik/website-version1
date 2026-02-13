@@ -1,91 +1,91 @@
 import { motion } from "framer-motion";
-import { Wifi, Download, ArrowRight, Building2, Smartphone, Users } from "lucide-react";
+import { Wifi, ArrowRight, Building2, Smartphone, Users, Rocket, Mail, User } from "lucide-react";
 import { Button } from "./ui/button";
 import { SurveyModal } from "./SurveyModal";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { Input } from "./ui/input";
 
-const CountdownModal = ({ onClose }: { onClose: () => void }) => {
-  const releaseTime = new Date("2026-01-30T00:00:00Z").getTime();
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+const ComingSoonModal = ({ onClose }: { onClose: () => void }) => (
+  <div className="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true">
+    <div className="absolute inset-0 bg-black/50" onClick={onClose} />
+    <div className="relative bg-card rounded-xl p-8 max-w-sm w-full z-10 border border-primary/30 text-center">
+      <Rocket className="w-12 h-12 text-primary mx-auto mb-4" />
+      <h3 className="text-2xl font-bold mb-2">Coming Soon</h3>
+      <p className="text-sm text-muted-foreground mb-6">
+        The provider platform is under development. Stay tuned for updates!
+      </p>
+      <Button size="sm" variant="outline" onClick={onClose} className="border-primary text-primary hover:bg-primary/10">
+        Got it
+      </Button>
+    </div>
+  </div>
+);
 
-  useEffect(() => {
-    const update = () => {
-      const total = Math.max(0, releaseTime - Date.now());
-      setTimeLeft({
-        days: Math.floor(total / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((total / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((total / (1000 * 60)) % 60),
-        seconds: Math.floor((total / 1000) % 60),
-      });
-    };
-    update();
-    const timer = window.setInterval(update, 1000);
-    return () => window.clearInterval(timer);
-  }, []);
+const WaitingListForm = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (name && email) setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <div className="text-center py-3">
+        <p className="text-sm font-semibold text-primary">🎉 You're on the list!</p>
+        <p className="text-xs text-muted-foreground mt-1">We'll notify you when the app is ready.</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true">
-      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
-      <div className="relative bg-card rounded-xl p-6 max-w-md w-full z-10 border border-primary/30">
-        <h3 className="text-2xl font-bold mb-2">Coming Soon</h3>
-        <p className="text-sm text-muted-foreground mb-4">
-          Not yet available. Countdown to launch:
-        </p>
-        <div className="flex justify-center gap-4 text-center mb-4">
-          {[
-            { value: timeLeft.days, label: "Days" },
-            { value: timeLeft.hours, label: "Hours" },
-            { value: timeLeft.minutes, label: "Minutes" },
-            { value: timeLeft.seconds, label: "Seconds" },
-          ].map(({ value, label }) => (
-            <div key={label}>
-              <div className="text-2xl font-semibold">{String(value).padStart(2, "0")}</div>
-              <div className="text-xs text-muted-foreground">{label}</div>
-            </div>
-          ))}
+    <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+      <p className="text-xs font-semibold text-muted-foreground mb-1">Join the waiting list</p>
+      <div className="flex gap-2">
+        <div className="relative flex-1">
+          <User className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Input placeholder="Name" value={name} onChange={e => setName(e.target.value)} className="pl-8 h-9 text-sm" required />
         </div>
-        <div className="flex justify-end">
-          <Button size="sm" variant="ghost" onClick={onClose}>Close</Button>
+        <div className="relative flex-1">
+          <Mail className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} className="pl-8 h-9 text-sm" required />
         </div>
       </div>
-    </div>
+      <Button type="submit" size="sm" className="gradient-primary text-primary-foreground shadow-glow hover:shadow-strong transition-smooth w-full">
+        Notify Me
+      </Button>
+    </form>
   );
 };
 
 export const AudienceSection = () => {
-  const [showAppModal, setShowAppModal] = useState(false);
   const [showPlatformModal, setShowPlatformModal] = useState(false);
 
-  const cards = [
-    {
-      icon: Smartphone,
-      badge: "For Users",
-      badgeIcon: Users,
-      title: "Stay Connected Anywhere",
-      description:
-        "Find affordable Wi-Fi hotspots near you, pay only for the time you need, and enjoy seamless connectivity across all K-Zones.",
-      features: ["Time-based pricing", "Mobile payments", "Find nearby hotspots"],
-      ctaLabel: "Download App",
-      ctaIcon: Download,
-      onCtaClick: () => setShowAppModal(true),
-      surveyUrl: "https://forms.gle/LsyTCFsarwadPe9H9",
-      surveyLabel: "User Survey",
-    },
-    {
-      icon: Wifi,
-      badge: "For Providers",
-      badgeIcon: Building2,
-      title: "Monetize Your Wi-Fi",
-      description:
-        "Register your Wi-Fi infrastructure on the Konnectik network, reach more customers, and earn revenue from your existing setup.",
-      features: ["Management dashboard", "Revenue analytics", "Automated billing"],
-      ctaLabel: "Access Platform",
-      ctaIcon: ArrowRight,
-      onCtaClick: () => setShowPlatformModal(true),
-      surveyUrl: "https://forms.gle/TGnerw5oTn7ww96S6",
-      surveyLabel: "Provider Survey",
-    },
-  ];
+  const userCard = {
+    icon: Smartphone,
+    badge: "For Users",
+    badgeIcon: Users,
+    title: "Stay Connected Anywhere",
+    description:
+      "Find affordable Wi-Fi hotspots near you, pay only for the time you need, and enjoy seamless connectivity across all K-Zones.",
+    features: ["Time-based pricing", "Mobile payments", "Find nearby hotspots"],
+    surveyUrl: "https://forms.gle/LsyTCFsarwadPe9H9",
+    surveyLabel: "User Survey",
+  };
+
+  const providerCard = {
+    icon: Wifi,
+    badge: "For Providers",
+    badgeIcon: Building2,
+    title: "Monetize Your Wi-Fi",
+    description:
+      "Register your Wi-Fi infrastructure on the Konnectik network, reach more customers, and earn revenue from your existing setup.",
+    features: ["Management dashboard", "Revenue analytics", "Automated billing"],
+    surveyUrl: "https://forms.gle/TGnerw5oTn7ww96S6",
+    surveyLabel: "Provider Survey",
+  };
 
   return (
     <section id="audience" className="py-24 relative">
@@ -110,7 +110,7 @@ export const AudienceSection = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {cards.map((card, index) => (
+          {[userCard, providerCard].map((card, index) => (
             <motion.div
               key={card.badge}
               initial={{ opacity: 0, y: 30 }}
@@ -146,19 +146,23 @@ export const AudienceSection = () => {
               </ul>
 
               {/* CTAs */}
-              <div className="mt-auto flex flex-col sm:flex-row gap-3">
-                <Button
-                  size="lg"
-                  className="gradient-primary text-primary-foreground shadow-glow hover:shadow-strong transition-smooth group flex-1"
-                  onClick={card.onCtaClick}
-                >
-                  <card.ctaIcon className="w-5 h-5 mr-2 group-hover:scale-110 transition-smooth" />
-                  {card.ctaLabel}
-                </Button>
+              <div className="mt-auto flex flex-col gap-3">
+                {index === 0 ? (
+                  <WaitingListForm />
+                ) : (
+                  <Button
+                    size="lg"
+                    className="gradient-primary text-primary-foreground shadow-glow hover:shadow-strong transition-smooth group w-full"
+                    onClick={() => setShowPlatformModal(true)}
+                  >
+                    <ArrowRight className="w-5 h-5 mr-2 group-hover:scale-110 transition-smooth" />
+                    Access Platform
+                  </Button>
+                )}
                 <SurveyModal
                   formUrl={card.surveyUrl}
                   buttonLabel={card.surveyLabel}
-                  buttonClassName="text-sm px-4 py-2 border-2 border-primary text-primary hover:bg-primary/10 transition-smooth group flex-1"
+                  buttonClassName="text-sm px-4 py-2 border-2 border-primary text-primary hover:bg-primary/10 transition-smooth group w-full"
                   buttonSize="lg"
                 />
               </div>
@@ -178,8 +182,7 @@ export const AudienceSection = () => {
         </motion.p>
       </div>
 
-      {showAppModal && <CountdownModal onClose={() => setShowAppModal(false)} />}
-      {showPlatformModal && <CountdownModal onClose={() => setShowPlatformModal(false)} />}
+      {showPlatformModal && <ComingSoonModal onClose={() => setShowPlatformModal(false)} />}
     </section>
   );
 };
