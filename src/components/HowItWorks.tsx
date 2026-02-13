@@ -131,7 +131,7 @@ export const HowItWorks = () => {
 
 							{/* Konnectik */}
 							<div className="text-center relative">
-								<div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-3 py-0.5 rounded-full text-xs font-bold">
+								<div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-3 py-0.5 rounded-full text-xs font-bold animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite] shadow-[0_0_12px_hsl(var(--primary)/0.5)]">
 									BEST VALUE
 								</div>
 								<div className="text-primary font-semibold mb-2 text-sm pt-4">
