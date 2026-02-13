@@ -173,6 +173,29 @@ export const LearnMore: React.FC = () => {
                   ))}
                 </div>
 
+                {/* Mobile image viewer */}
+                <div className="md:hidden rounded-xl overflow-hidden border border-border/50 shadow-lg bg-card">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={activeTab}
+                      src={images[activeTab] ?? ''}
+                      alt={
+                        activeTab === 'why'
+                          ? 'Community and students - why we exist'
+                          : activeTab === 'how'
+                          ? 'Network deployment and planning'
+                          : 'Platform and founder overview'
+                      }
+                      loading="lazy"
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      transition={{ duration: 0.3 }}
+                      className="w-full h-48 object-cover block"
+                    />
+                  </AnimatePresence>
+                </div>
+
                 <div className="min-h-[280px]">
                   {tabs.map((tab) => (
                     <TabPanel
@@ -184,10 +207,9 @@ export const LearnMore: React.FC = () => {
                 </div>
               </div>
 
-              {/* RIGHT: Visual element (contained image) */}
+              {/* RIGHT: Visual element (desktop only) */}
               <div className="relative hidden md:flex items-center justify-center p-4 md:p-8 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent">
                 <div className="w-full flex items-center justify-center">
-                  {/* capped container keeps image contained and sized */}
                   <div className="max-w-[420px] max-h-[360px] w-full rounded-2xl overflow-hidden border border-border/50 shadow-2xl bg-card">
                     <AnimatePresence mode="wait">
                       <motion.img
@@ -201,9 +223,6 @@ export const LearnMore: React.FC = () => {
                             : 'Platform and founder overview'
                         }
                         loading="lazy"
-                        onError={(e) => {
-                          console.warn(`Failed to load image for tab "${activeTab}"`, e);
-                        }}
                         initial={{ opacity: 0, scale: 0.98, y: 8 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.98, y: -8 }}
