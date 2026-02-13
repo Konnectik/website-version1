@@ -12,7 +12,7 @@ const ComingSoonModal = ({ onClose }: { onClose: () => void }) => (
       <Rocket className="w-12 h-12 text-primary mx-auto mb-4" />
       <h3 className="text-2xl font-bold mb-2">Coming Soon</h3>
       <p className="text-sm text-muted-foreground mb-6">
-        The provider platform is under development. Stay tuned for updates!
+        The Konnectik provider platform is under development. We'll notify you when it's ready!
       </p>
       <Button size="sm" variant="outline" onClick={onClose} className="border-primary text-primary hover:bg-primary/10">
         Got it
@@ -155,8 +155,8 @@ export const AudienceSection = () => {
                     className="gradient-primary text-primary-foreground shadow-glow hover:shadow-strong transition-smooth group w-full"
                     onClick={() => setShowPlatformModal(true)}
                   >
-                    <ArrowRight className="w-5 h-5 mr-2 group-hover:scale-110 transition-smooth" />
-                    Access Platform
+                    <Smartphone className="w-5 h-5 mr-2 group-hover:scale-110 transition-smooth" />
+                    Download App
                   </Button>
                 )}
                 <SurveyModal
