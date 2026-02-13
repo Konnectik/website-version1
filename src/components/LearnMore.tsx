@@ -191,7 +191,7 @@ export const LearnMore: React.FC = () => {
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.98 }}
                       transition={{ duration: 0.3 }}
-                      className="w-full h-48 object-cover block"
+                      className="w-full h-48 object-contain block"
                     />
                   </AnimatePresence>
                 </div>
