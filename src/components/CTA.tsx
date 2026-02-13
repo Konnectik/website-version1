@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { ArrowRight, Download } from "lucide-react";
@@ -9,38 +9,6 @@ import mockup2 from "@/assets/konnectik_mockup3.png";
 export const CTA = () => {
   // --- added state and countdown logic ---
   const [showModal, setShowModal] = useState(false);
-  const [timeLeft, setTimeLeft] = useState({
-    total: 0,
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  const releaseTime = new Date("2026-01-30T00:00:00Z").getTime();
-
-  useEffect(() => {
-    let timer: number | undefined;
-    if (showModal) {
-      const update = () => {
-        const now = Date.now();
-        const total = Math.max(0, releaseTime - now);
-        const seconds = Math.floor((total / 1000) % 60);
-        const minutes = Math.floor((total / 1000 / 60) % 60);
-        const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
-        const days = Math.floor(total / (1000 * 60 * 60 * 24));
-        setTimeLeft({ total, days, hours, minutes, seconds });
-        if (total <= 0 && timer) {
-          window.clearInterval(timer);
-        }
-      };
-      update();
-      timer = window.setInterval(update, 1000);
-    }
-    return () => {
-      if (timer) window.clearInterval(timer);
-    };
-  }, [showModal]);
 
   return (
     <section id="download"
@@ -135,57 +103,32 @@ export const CTA = () => {
               <DemoModal />
             </div>
 
-            {/* Modal: Unavailability + Countdown */}
+            {/* Modal: Coming Soon */}
             {showModal && (
               <div
                 className="fixed inset-0 z-50 flex items-center justify-center p-4"
                 role="dialog"
                 aria-modal="true"
-                aria-label="App unavailable modal"
+                aria-label="App coming soon modal"
               >
                 <div
                   className="absolute inset-0 bg-black/50"
                   onClick={() => setShowModal(false)}
                 />
-                <div className="relative bg-card rounded-xl p-6 max-w-md w-full z-10 border border-primary/30">
-                  <h3 className="text-2xl font-bold mb-2">App Unavailable</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    The app is not yet available. Countdown to release:
+                <div className="relative bg-card rounded-xl p-8 max-w-sm w-full z-10 border border-primary/30 text-center">
+                  <Download className="w-12 h-12 text-primary mx-auto mb-4" />
+                  <h3 className="text-2xl font-bold mb-2">Coming Soon</h3>
+                  <p className="text-sm text-muted-foreground mb-6">
+                    The Konnectik app is currently in development. We'll notify you when it's ready to download!
                   </p>
-                  <div className="flex justify-center gap-4 text-center mb-4">
-                    <div>
-                      <div className="text-2xl font-semibold">{timeLeft.days}</div>
-                      <div className="text-xs text-muted-foreground">Days</div>
-                    </div>
-                    <div>
-                      <div className="text-2xl font-semibold">
-                        {String(timeLeft.hours).padStart(2, "0")}
-                      </div>
-                      <div className="text-xs text-muted-foreground">Hours</div>
-                    </div>
-                    <div>
-                      <div className="text-2xl font-semibold">
-                        {String(timeLeft.minutes).padStart(2, "0")}
-                      </div>
-                      <div className="text-xs text-muted-foreground">Minutes</div>
-                    </div>
-                    <div>
-                      <div className="text-2xl font-semibold">
-                        {String(timeLeft.seconds).padStart(2, "0")}
-                      </div>
-                      <div className="text-xs text-muted-foreground">Seconds</div>
-                    </div>
-                  </div>
-                  <div className="flex justify-end gap-2">
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      onClick={() => setShowModal(false)}
-                      className="text-sm"
-                    >
-                      Close
-                    </Button>
-                  </div>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => setShowModal(false)}
+                    className="border-primary text-primary hover:bg-primary/10"
+                  >
+                    Got it
+                  </Button>
                 </div>
               </div>
             )}

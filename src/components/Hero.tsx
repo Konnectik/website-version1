@@ -138,26 +138,6 @@ export const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20"
-        >
-          <div className="text-center">
-            <div className="text-4xl md:text-5xl font-black text-primary mb-2">90%</div>
-            <div className="text-sm text-muted-foreground font-medium">Cost Savings</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl md:text-5xl font-black text-primary mb-2">100%</div>
-            <div className="text-sm text-muted-foreground font-medium">Coverage in Zones</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl md:text-5xl font-black text-primary mb-2">24/7</div>
-            <div className="text-sm text-muted-foreground font-medium">Always Available</div>
-          </div>
-        </motion.div>
       </div>
 
       {/* Scroll Indicator */}

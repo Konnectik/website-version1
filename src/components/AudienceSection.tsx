@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
-import { Wifi, ArrowRight, Building2, Smartphone, Users, Rocket, Mail, User } from "lucide-react";
+import { Wifi, ArrowRight, Building2, Smartphone, Users, Rocket, MessageCircle } from "lucide-react";
 import { Button } from "./ui/button";
 import { SurveyModal } from "./SurveyModal";
 import { useState } from "react";
-import { Input } from "./ui/input";
+
+const WHATSAPP_LINK = "https://chat.whatsapp.com/ERaHGmXxuy76VKvF2SbXI9";
 
 const ComingSoonModal = ({ onClose }: { onClose: () => void }) => (
   <div className="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true">
@@ -21,44 +22,6 @@ const ComingSoonModal = ({ onClose }: { onClose: () => void }) => (
   </div>
 );
 
-const WaitingListForm = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (name && email) setSubmitted(true);
-  };
-
-  if (submitted) {
-    return (
-      <div className="text-center py-3">
-        <p className="text-sm font-semibold text-primary">🎉 You're on the list!</p>
-        <p className="text-xs text-muted-foreground mt-1">We'll notify you when the app is ready.</p>
-      </div>
-    );
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-      <p className="text-xs font-semibold text-muted-foreground mb-1">Join the waiting list</p>
-      <div className="flex gap-2">
-        <div className="relative flex-1">
-          <User className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-          <Input placeholder="Name" value={name} onChange={e => setName(e.target.value)} className="pl-8 h-9 text-sm" required />
-        </div>
-        <div className="relative flex-1">
-          <Mail className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-          <Input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} className="pl-8 h-9 text-sm" required />
-        </div>
-      </div>
-      <Button type="submit" size="sm" className="gradient-primary text-primary-foreground shadow-glow hover:shadow-strong transition-smooth w-full">
-        Notify Me
-      </Button>
-    </form>
-  );
-};
 
 export const AudienceSection = () => {
   const [showPlatformModal, setShowPlatformModal] = useState(false);
@@ -148,7 +111,16 @@ export const AudienceSection = () => {
               {/* CTAs */}
               <div className="mt-auto flex flex-col gap-3">
                 {index === 0 ? (
-                  <WaitingListForm />
+                  <Button
+                    size="lg"
+                    className="gradient-primary text-primary-foreground shadow-glow hover:shadow-strong transition-smooth group w-full"
+                    asChild
+                  >
+                    <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+                      <MessageCircle className="w-5 h-5 mr-2 group-hover:scale-110 transition-smooth" />
+                      Join WhatsApp Community
+                    </a>
+                  </Button>
                 ) : (
                   <Button
                     size="lg"
