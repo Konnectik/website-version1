@@ -105,7 +105,7 @@ export const HowItWorks = () => {
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true }}
 					transition={{ duration: 0.6 }}
-					className="mt-12 md:mt-16 max-w-3xl mx-auto"
+					className="mt-12 md:mt-16 max-w-4xl mx-auto"
 				>
 					<div className="bg-card border-2 rounded-2xl p-6 md:p-8 shadow-strong">
 						<h3 className="text-2xl font-black text-center mb-6">
