@@ -34,7 +34,7 @@ const posts = [
 
 export const BlogSection = () => {
   return (
-    <section className="py-24 bg-background relative overflow-hidden">
+    <section className="py-24 bg-muted relative z-10">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
       <div className="container mx-auto px-4">
