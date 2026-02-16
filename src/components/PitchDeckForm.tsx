@@ -137,7 +137,7 @@ export const PitchDeckForm = ({ isOpen, onClose }: PitchDeckFormProps) => {
                 </p>
                 <Button asChild size="lg" className="w-full">
                   <a
-                    href="https://bit.ly/4oFv1rE"
+                    href="https://bit.ly/KonnectikPDS"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
